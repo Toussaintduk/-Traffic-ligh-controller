@@ -6,9 +6,9 @@ Traffic light controllers are **critical embedded systems** that manage traffic 
 This project focuses on **designing and implementing** a four-way traffic light controller with pedestrian crossings using **AVR microcontrollers**, applying key concepts such as **I/O operations, timers, and interrupts**.
 
 This work was completed as a **class assignment** under the supervision of  
-👨‍🏫 **Prof. Kizito NKURIKIYEYEZU**  
+ **Prof. Kizito NKURIKIYEYEZU**  
 for the **EEE 3261 – Microcontroller and Embedded Systems** module  
-in the **Electrical Power Engineering Department**  
+in the **Electrical Power Engineering**  
 at the **University of Rwanda**.
 
 ---
