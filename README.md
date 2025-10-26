@@ -139,7 +139,7 @@ Include Proteus simulation screenshots showing:
 
 ---
 
-## 👨‍🏫 Supervised by
+## Supervised by
 
 **Prof. Kizito NKURIKIYEYEZU**  
 Lecturer, Department of Electrical Power Engineering  
