@@ -3,9 +3,13 @@
 ## 📘 Background
 
 Traffic light controllers are **critical embedded systems** that manage traffic flow and ensure pedestrian safety at intersections.  
-This project involves **designing and implementing** a four-way traffic light controller with pedestrian crossings using **AVR microcontrollers**, applying concepts of **I/O operations, timers, and interrupts**.  
+This project focuses on **designing and implementing** a four-way traffic light controller with pedestrian crossings using **AVR microcontrollers**, applying key concepts such as **I/O operations, timers, and interrupts**.
 
-Developed as part of **EEE 3261 — Microcontroller & Embedded Systems** at the **University of Rwanda**, this lab exercise integrates both **hardware simulation** (Proteus) and **embedded C programming** (AVR-GCC).
+This work was completed as a **class assignment** under the supervision of  
+👨‍🏫 **Prof. Kizito NKURIKIYEYEZU**  
+for the **EEE 3261 – Microcontroller and Embedded Systems** module  
+in the **Electrical Power Engineering Department**  
+at the **University of Rwanda**.
 
 ---
 
@@ -15,7 +19,7 @@ Developed as part of **EEE 3261 — Microcontroller & Embedded Systems** at the 
 | Component | Function |
 |------------|-----------|
 | **ATmega16/32** | Main microcontroller |
-| **LEDs (12 total)** | Traffic lights for 4 directions (N, E, S, W) |
+| **LEDs (12 total)** | Traffic lights for four directions (N, E, S, W) |
 | **Pedestrian LEDs (4 pairs)** | Walk/Don’t Walk indicators |
 | **Push Buttons (4)** | Pedestrian crossing request inputs |
 | **Buzzer** | Audible pedestrian warning |
@@ -37,19 +41,18 @@ Developed as part of **EEE 3261 — Microcontroller & Embedded Systems** at the 
 
 ### 1. Basic Traffic Light Control
 - Standard **Green → Yellow → Red** sequence  
-- **North/South** and **East/West** operate as synchronized pairs  
-- Timing:  
+- **North/South** and **East/West** directions operate as synchronized pairs  
+- Timing parameters:  
   - Green: 20s  
   - Yellow: 5s  
   - All-Red: 2s  
 
 ### 2. Pedestrian Crossing System
-- Pedestrian requests via push buttons  
-- System completes current traffic phase before activating pedestrian crossing  
-- **Countdown timer** (7-segment display) shows crossing time  
+- Pedestrians press buttons to request crossing  
+- System completes the current vehicle phase before activating pedestrian mode  
+- **Countdown timer** displays remaining crossing time  
 - **Buzzer** activates during crossing phase  
-- **Crossing time:** 10s  
-- Last 3 seconds use **faster beeping** to indicate "hurry up"
+- **Crossing time:** 10 seconds (final 3 seconds have faster beeps)
 
 ---
 
@@ -57,65 +60,73 @@ Developed as part of **EEE 3261 — Microcontroller & Embedded Systems** at the 
 
 | Mode | Description |
 |------|-------------|
-| **Normal Mode** | Standard 20s green cycle |
-| **Rush Hour Mode** | 30s extended green for main road (N/S) |
-| **Night Mode** | Flashing yellow (main) and flashing red (side) |
-| **Emergency Mode** | Activated via special button; all red except emergency lane |
+| **Normal Mode** | Standard 20-second green phase |
+| **Rush Hour Mode** | 30-second green for main road (N/S) |
+| **Night Mode** | Flashing yellow for main road, flashing red for side road |
+| **Emergency Mode** | Activated via special input; all red except for emergency direction |
 
 ---
 
 ## ⏱ Implementation Requirements
 
-- **Timer1** used for precise 1-second base (interrupt-driven, no delay functions)  
-- Fully **non-blocking timing** using interrupts  
-- Designed as a **finite state machine (FSM)** for clear logic flow  
-- **Direct port manipulation** for efficiency  
-- **Button debouncing** and interrupt-based pedestrian request handling  
-- Visual and audible feedback for all user interactions  
+- **Timer1** provides a precise 1-second interrupt-driven time base  
+- **Non-blocking timing** (no `_delay_ms()` functions)  
+- Designed using a **finite state machine (FSM)**  
+- **Direct port manipulation** for LED and button control  
+- **Interrupt-based pedestrian requests** with proper debouncing  
+- Real-time **visual and audible feedback** during operation  
 
 ---
 
 ## 💡 Display & Buzzer Logic
 
 ### 7-Segment Display
-- Shows countdown for current green/pedestrian phase  
-- Updates every second  
-- Flashes during last 3 seconds  
-- Displays special patterns for system modes and emergency alerts  
+- Displays countdown for current phase  
+- Flashes during final 3 seconds  
+- Indicates special patterns for modes and emergencies  
 
 ### Buzzer
-- Beeps regularly during pedestrian crossing  
-- Increases frequency in final 3 seconds  
-- Plays unique patterns for mode changes and emergencies  
+- Regular beeps during pedestrian crossing  
+- Faster beeps during the final 3 seconds  
+- Unique tones for mode changes and emergency override  
 
 ---
 
 ## 🧠 Safety Features
 
 - **Fail-safe operation:** prevents conflicting green signals  
-- **All-red safety phase** between transitions  
-- **Pedestrian safety lockout:** prevents walk signal during vehicle green  
-- **Watchdog timer** for system reset in case of fault  
-- **Safe mode fallback** if system errors occur  
+- **All-red safety interval** between direction changes  
+- **Pedestrian safety lockout:** no “Walk” signal during vehicle green  
+- **Watchdog timer** for automatic system recovery  
+- **Safe mode fallback** during detected faults  
 
 ---
 
 ## 🧪 Testing & Validation
 
 ### ✅ Functional Testing
-- Verify all traffic sequences and timings  
-- Test pedestrian button response under various traffic conditions  
-- Validate special modes (rush hour, night, emergency)
+- Verified timing accuracy and sequence logic  
+- Tested pedestrian requests under various traffic scenarios  
+- Validated Rush Hour, Night, and Emergency modes  
 
 ### 🧩 Safety Testing
-- Confirm no conflicting green signals  
-- Ensure all-red intervals function correctly  
-- Test system recovery from simulated faults  
+- Confirmed absence of conflicting signals  
+- Verified all-red transitions and pedestrian safety  
+- Simulated fault recovery using watchdog functionality  
 
 ### 📊 Documentation
 - Complete **state machine diagram**  
-- **Timing chart** and **truth table** for signal combinations  
-- User manual explaining normal and emergency operation  
+- **Timing chart** and **truth table** for signal logic  
+- User guide describing system operation and setup  
+
+---
+
+## 🖼️ Simulation Preview
+*(To be added)*  
+Include Proteus simulation screenshots showing:
+- The four-way intersection layout  
+- Traffic light operation sequence  
+- Pedestrian crossing activation with countdown and buzzer  
 
 ---
 
@@ -124,13 +135,16 @@ Developed as part of **EEE 3261 — Microcontroller & Embedded Systems** at the 
 **Dukundimana Toussaint**  
 🎓 Electrical Power Engineering & Data Science Student  
 📍 University of Rwanda  
-💬 Passionate about Embedded Systems, IoT, and AI for sustainable development  
+💬 Passionate about Embedded Systems, IoT, and AI for Sustainable Development  
 
 ---
 
-## 📜 License
-This project is released under the **MIT License** — free for academic and educational use.
+## 👨‍🏫 Supervised by
+
+**Prof. Kizito NKURIKIYEYEZU**  
+Lecturer, Department of Electrical Power Engineering  
+**University of Rwanda – College of Science and Technology**
 
 ---
 
-> “Safety through intelligent embedded systems — one intersection at a time.”  
+> “Safety through intelligent embedded systems — one intersection at a time.”
